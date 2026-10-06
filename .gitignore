@@ -1,0 +1,11 @@
+node_modules
+out
+dist
+.DS_Store
+*.log
+__pycache__/
+.pytest_cache/
+.venv/
+bench-results/
+.env
+.env.*

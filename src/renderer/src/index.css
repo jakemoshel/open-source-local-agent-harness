@@ -1,0 +1,212 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Geist';
+  src: url('./assets/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./assets/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: block;
+}
+
+:root {
+  --bg: #f7f7f5;
+  --bg-2: #f1f1ee;
+  --bg-3: #e9eae6;
+  --surface: #fbfbf9;
+  --fg: #171817;
+  --fg-2: #555752;
+  --fg-3: #898b85;
+  --border: #dedfda;
+  --border-2: #caccc5;
+  --hover: #e9eae6;
+  --accent: #5968f2;
+  --accent-hover: #4858e5;
+  --accent-subtle: #eeefff;
+  --green: #28a745;
+  --amber: #e79c13;
+  --red: #da2f35;
+  --purple: #7d3cd7;
+  --ring: rgba(89, 104, 242, 0.35);
+  --shadow: 0 1px 2px rgba(23, 24, 23, 0.04), 0 8px 24px rgba(23, 24, 23, 0.06);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0d0e0c;
+  --bg-2: #131411;
+  --bg-3: #1a1b18;
+  --surface: #10110f;
+  --fg: #f1f2ed;
+  --fg-2: #b6b8b1;
+  --fg-3: #797b75;
+  --border: #282a25;
+  --border-2: #363933;
+  --hover: #1a1b18;
+  --accent: #7c89ff;
+  --accent-hover: #8995ff;
+  --accent-subtle: #191c30;
+  --green: #3ecf6e;
+  --amber: #f5a524;
+  --red: #ff5b5f;
+  --purple: #a371f7;
+  --ring: rgba(124, 137, 255, 0.4);
+  --shadow: 0 0 0 1px #282a25, 0 8px 24px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-line: var(--border);
+  --color-line-2: var(--border-2);
+  --color-hover: var(--hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-surface: var(--surface);
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-purple: var(--purple);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+input,
+textarea,
+pre,
+code,
+.selectable {
+  user-select: text;
+}
+.drag {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+::selection {
+  background: var(--ring);
+}
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 1px;
+  }
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 10px;
+  border: 3px solid var(--bg);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prose-sm {
+  line-height: 1.6;
+}
+.prose-sm p {
+  margin: 0 0 0.6em;
+}
+.prose-sm p:last-child {
+  margin-bottom: 0;
+}
+.prose-sm ul,
+.prose-sm ol {
+  padding-left: 1.25em;
+  margin: 0.3em 0 0.6em;
+}
+.prose-sm ul {
+  list-style: disc;
+}
+.prose-sm ol {
+  list-style: decimal;
+}
+.prose-sm code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--bg-3);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.prose-sm pre {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+.prose-sm pre code {
+  background: none;
+  padding: 0;
+}
+.prose-sm a {
+  color: var(--accent);
+}
+.prose-sm h1,
+.prose-sm h2,
+.prose-sm h3 {
+  font-weight: 600;
+  margin: 0.8em 0 0.4em;
+}
+.prose-sm table {
+  border-collapse: collapse;
+  margin: 0.5em 0;
+}
+.prose-sm th,
+.prose-sm td {
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+.caret::after {
+  content: '▍';
+  animation: caret 1s steps(1) infinite;
+  color: var(--fg-3);
+}
