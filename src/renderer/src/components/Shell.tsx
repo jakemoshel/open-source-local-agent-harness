@@ -181,22 +181,22 @@ export function Shell() {
 
   return (
     <div className="flex h-full flex-col">
-      <header className="drag sticky top-0 z-40 border-b border-line bg-bg">
+      <header className="drag sticky top-0 workspace-header z-40 border-b border-line">
         <div className="flex h-12 items-center gap-2 pr-3 pl-[88px]">
           <Mark className="size-5" />
-          <span className="text-sm font-semibold tracking-tight">Jarvis</span>
+          <span className="font-serif text-xl font-semibold tracking-tight">Jarvis</span>
           {active > 0 && (
             <span className="flex items-center gap-1.5 text-xs text-fg-3">
               <StatusDot status="running" className="size-1.5" /> {active}
             </span>
           )}
-          <nav className="no-drag ml-4 flex gap-0.5">
+          <nav className="workspace-tabs no-drag ml-4 flex gap-1">
             {tabs.map((t) => (
             <NavLink
               key={t.to}
               to={t.to}
               className={({ isActive }) =>
-                  cx('rounded-md px-2.5 py-1 text-[13px] transition-colors', isActive || (t.to === '/settings' && inSettings && location.pathname !== '/profiles') ? 'bg-hover text-fg' : 'text-fg-3 hover:text-fg')
+                  cx('shrink-0 rounded-lg px-3 py-1.5 text-[13px] transition-colors', isActive || (t.to === '/settings' && inSettings && location.pathname !== '/profiles') ? 'bg-accent-subtle text-accent' : 'text-fg-3 hover:text-fg')
                 }
               >
                 {t.label}
@@ -205,15 +205,15 @@ export function Shell() {
           </nav>
           <div className="flex-1" />
           <AuthPill />
-          <button onClick={() => setPalette(true)} title="Search (⌘K)" className="no-drag flex size-8 items-center justify-center rounded-md text-fg-3 hover:bg-hover hover:text-fg">
+          <button onClick={() => setPalette(true)} aria-label="Search pages and runs" title="Search (⌘K)" className="no-drag flex size-8 items-center justify-center rounded-md text-fg-3 hover:bg-hover hover:text-fg">
             <Search className="size-4" />
           </button>
-          <button onClick={() => navigate('/chat')} title="New chat (⌘N)" className="no-drag flex size-8 items-center justify-center rounded-md text-fg-3 hover:bg-hover hover:text-fg">
+          <button onClick={() => navigate('/chat')} aria-label="New chat" title="New chat (⌘N)" className="no-drag flex size-8 items-center justify-center rounded-md text-fg-3 hover:bg-hover hover:text-fg">
             <Plus className="size-4" />
           </button>
         </div>
         {inSettings && (
-          <nav className="no-drag flex gap-4 px-[88px] pb-2 text-[13px]">
+          <nav className="workspace-tabs no-drag flex gap-4 px-[88px] pb-2 text-[13px]">
             {settingsTabs.map((t) => (
               <NavLink key={t.to} to={t.to} end className={({ isActive }) => (isActive ? 'text-fg' : 'text-fg-3 hover:text-fg')}>
                 {t.label}
@@ -230,7 +230,7 @@ export function Shell() {
           </Suspense>
         </main>
       ) : (
-        <main className="flex-1 overflow-y-auto bg-bg-2">
+        <main className="workspace-canvas flex-1 overflow-y-auto">
           <div className="mx-auto max-w-[1200px] px-6 py-8">
             <Suspense fallback={null}>
               <Outlet />

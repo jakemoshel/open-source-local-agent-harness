@@ -14,48 +14,51 @@
 }
 
 :root {
-  --bg: #f7f7f5;
-  --bg-2: #f1f1ee;
-  --bg-3: #e9eae6;
-  --surface: #fbfbf9;
-  --fg: #171817;
-  --fg-2: #555752;
-  --fg-3: #898b85;
-  --border: #dedfda;
-  --border-2: #caccc5;
-  --hover: #e9eae6;
-  --accent: #5968f2;
-  --accent-hover: #4858e5;
-  --accent-subtle: #eeefff;
+  --bg: #e9edf5;
+  --bg-2: #dfe5f0;
+  --bg-3: #d7dfed;
+  --surface: #fafbfe;
+  --fg: #182333;
+  --fg-2: #4f6076;
+  --fg-3: #5f7087;
+  --border: #cbd5e3;
+  --border-2: #b1bfd3;
+  --hover: #d7dfed;
+  --accent: #2448db;
+  --accent-hover: #1d3dc0;
+  --on-accent: #ffffff;
+  --accent-subtle: #dde5ff;
   --green: #28a745;
   --amber: #e79c13;
   --red: #da2f35;
   --purple: #7d3cd7;
   --ring: rgba(89, 104, 242, 0.35);
   --shadow: 0 1px 2px rgba(23, 24, 23, 0.04), 0 8px 24px rgba(23, 24, 23, 0.06);
+  --canvas: linear-gradient(135deg, var(--bg) 0%, var(--accent-subtle) 55%, var(--bg-2) 100%);
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --bg: #0d0e0c;
-  --bg-2: #131411;
-  --bg-3: #1a1b18;
-  --surface: #10110f;
-  --fg: #f1f2ed;
-  --fg-2: #b6b8b1;
-  --fg-3: #797b75;
-  --border: #282a25;
-  --border-2: #363933;
-  --hover: #1a1b18;
-  --accent: #7c89ff;
-  --accent-hover: #8995ff;
-  --accent-subtle: #191c30;
+  --bg: #111925;
+  --bg-2: #1b2736;
+  --bg-3: #26364a;
+  --surface: #243244;
+  --fg: #f2f5fb;
+  --fg-2: #c1ccdb;
+  --fg-3: #a2b3c9;
+  --border: #3b4c62;
+  --border-2: #4b607b;
+  --hover: #26364a;
+  --accent: #9cafff;
+  --accent-hover: #b0bfff;
+  --on-accent: #182333;
+  --accent-subtle: #2d3e65;
   --green: #3ecf6e;
   --amber: #f5a524;
   --red: #ff5b5f;
   --purple: #a371f7;
   --ring: rgba(124, 137, 255, 0.4);
-  --shadow: 0 0 0 1px #282a25, 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow: 0 0 0 1px #3b4c62, 0 8px 24px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
 }
 
@@ -72,6 +75,7 @@
   --color-line-2: var(--border-2);
   --color-hover: var(--hover);
   --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-subtle: var(--accent-subtle);
   --color-surface: var(--surface);
@@ -209,4 +213,13 @@ code,
   content: '▍';
   animation: caret 1s steps(1) infinite;
   color: var(--fg-3);
+}
+
+/* A quiet canvas behind floating work surfaces, shared with the phone. */
+.workspace-canvas { background: var(--canvas); }
+.workspace-header { background: var(--surface); box-shadow: 0 2px 16px rgb(0 0 0 / 4%); }
+.workspace-tabs { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.workspace-tabs::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-dot, .caret::after { animation: none; }
 }

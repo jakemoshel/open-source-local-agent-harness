@@ -81,14 +81,14 @@ function Sidebar({ active }: { active: string | null }) {
     store('chat.sidebar.groupBy', next)
   }
   return (
-    <aside className="flex w-[268px] shrink-0 flex-col border-r border-line bg-bg">
+    <aside className="flex w-[268px] shrink-0 flex-col border-r border-line bg-surface">
       <div className="space-y-2 p-3">
         <Button variant="primary" className="w-full" icon={<Plus className="size-3.5" />} onClick={() => navigate('/chat')}>
           New chat
         </Button>
         <div className="relative">
           <Search className="absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-fg-3" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search chats" className="h-8 w-full rounded-md bg-bg-2 pr-2 pl-8 text-[13px] outline-none placeholder:text-fg-3" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search chats" placeholder="Search chats" className="h-8 w-full rounded-md bg-bg-2 pr-2 pl-8 text-[13px] outline-none placeholder:text-fg-3" />
         </div>
         <div className="flex items-center gap-1 text-[11px] text-fg-3" role="radiogroup" aria-label="Group chats by">
           <span className="mr-1">Group by</span>
@@ -195,7 +195,7 @@ function Composer({
     }
   }
   return (
-    <div className="rounded-xl border border-line-2 bg-bg shadow-[var(--shadow)] focus-within:border-fg-3">
+    <div className="rounded-2xl border border-line bg-surface shadow-[var(--shadow)] focus-within:border-fg-3">
       <textarea
         ref={ref}
         rows={1}
@@ -238,7 +238,7 @@ function Composer({
         <button
           onClick={send}
           disabled={!text.trim() || disabled || sending}
-          className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-fg text-bg transition-opacity disabled:opacity-25"
+          className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-accent text-on-accent transition-opacity disabled:opacity-25"
           title={running ? 'Steer task (Enter)' : 'Send (Enter)'}
         >
           <ArrowUp className="size-4" />
@@ -398,7 +398,7 @@ export function Chat() {
   return (
     <div className="flex h-full min-h-0">
       {sidebar && <Sidebar active={key} />}
-      <section className="flex min-w-0 flex-1 flex-col bg-bg-2">
+      <section className="workspace-canvas flex min-w-0 flex-1 flex-col">
         {key && runs.length > 0 && (
           <div className="flex h-11 shrink-0 items-center gap-3 border-b border-line bg-bg px-5 text-[13px]">
             <span className="min-w-0 flex-1 truncate font-medium">{runs[0].title}</span>
@@ -419,10 +419,10 @@ export function Chat() {
           {!key ? (
             <div className="mx-auto flex h-full max-w-2xl flex-col justify-center px-6 pb-10">
               <Mark className="size-8" />
-              <h1 className="mt-5 text-[28px] font-semibold tracking-[-0.03em]">At your service.</h1>
+              <h1 className="mt-5 font-serif text-[40px] font-semibold tracking-[-0.03em]">At your service.</h1>
               <div className="mt-6 grid grid-cols-2 gap-2">
                 {SUGGESTIONS.map((s) => (
-                  <button key={s} onClick={() => void send(s)} className="rounded-lg border border-line bg-bg px-3.5 py-3 text-left text-[13px] text-fg-2 hover:border-line-2 hover:text-fg">
+                  <button key={s} onClick={() => void send(s)} className="rounded-2xl border border-line bg-surface px-4 py-4 shadow-sm text-left text-[13px] text-fg-2 hover:border-line-2 hover:text-fg">
                     {s}
                   </button>
                 ))}

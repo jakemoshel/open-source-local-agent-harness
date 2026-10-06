@@ -16,7 +16,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLBut
       className={cx(
         'no-drag inline-flex shrink-0 items-center justify-center gap-1.5 rounded-md font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50',
         size === 'sm' ? 'h-7 px-2.5 text-[13px]' : 'h-8 px-3 text-sm',
-        variant === 'primary' && 'bg-accent text-white hover:bg-accent-hover',
+        variant === 'primary' && 'bg-accent text-on-accent hover:bg-accent-hover',
         variant === 'secondary' && 'border border-line-2 bg-bg text-fg hover:bg-hover',
         variant === 'ghost' && 'text-fg-2 hover:bg-hover hover:text-fg',
         variant === 'danger' && 'bg-red text-white hover:opacity-90',
