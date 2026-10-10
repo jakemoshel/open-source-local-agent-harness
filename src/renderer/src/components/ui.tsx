@@ -4,6 +4,7 @@ import { Check, ChevronDown, Copy, Loader2, X } from 'lucide-react'
 import type { RunStatus } from '@shared/types'
 import { cx } from '@/lib/cx'
 import markUrl from '@/assets/mark.png'
+import markLightUrl from '@/assets/mark-light.png'
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type Size = 'sm' | 'md'
@@ -399,7 +400,12 @@ export function Meter({ value, max }: { value: number; max: number }) {
   )
 }
 
-/** The Jarvis mark: a Mac mini seen from above, with a HUD ring. */
+/** The Jarvis mark: HUD rings around the J.A.R.V.I.S wordmark, deep blue on light, cyan on dark. */
 export function Mark({ className }: { className?: string }) {
-  return <img src={markUrl} alt="Jarvis" draggable={false} className={cx('rounded-[22%]', className)} />
+  return (
+    <>
+      <img src={markLightUrl} alt="Jarvis" draggable={false} className={cx('rounded-[22%] [[data-theme=dark]_&]:hidden', className)} />
+      <img src={markUrl} alt="Jarvis" draggable={false} className={cx('hidden rounded-[22%] [[data-theme=dark]_&]:block', className)} />
+    </>
+  )
 }
