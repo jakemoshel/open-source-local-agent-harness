@@ -400,7 +400,7 @@ export function Meter({ value, max }: { value: number; max: number }) {
   )
 }
 
-/** The Jarvis mark: HUD rings around the J.A.R.V.I.S wordmark, deep blue on light, cyan on dark. */
+/** The Jarvis mark: HUD rings around the J.A.R.V.I.S wordmark, glowing blue on dark, deep blue on light. */
 export function Mark({ className }: { className?: string }) {
   return (
     <>
